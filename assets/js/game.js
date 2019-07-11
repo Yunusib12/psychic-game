@@ -9,6 +9,10 @@ let userGuess;
 let computerChoose;
 let computerChoiceArray = [];
 let userChoiceArray = [];
+let slap = new Audio("./assets/sounds/slap.mp3");
+let thunder = new Audio("./assets/sounds/thunder.mp3");
+let applause = new Audio("./assets/sounds/applause.mp3");
+let boo = new Audio("./assets/sounds/boo.mp3");
 
 // Create an array that lists out all of the letters options to guess from
 let letterChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
@@ -18,6 +22,9 @@ let winsText = document.getElementById("wins");
 let lossesText = document.getElementById("losses");
 let guessesLeftText = document.getElementById("guessesLeft");
 let guessesText = document.getElementById("guessed");
+let errorMessageText = document.getElementById("errorMessage");
+
+errorMessageText.style.display = "none";
 
 /* FUNCTIONS
 ============================================================= */
@@ -37,38 +44,54 @@ function computerChoice() {
 function userChoice() {
 
     document.onkeyup = function (event) {
-        
+
+        errorMessageText.style.display = "none";
+        slap.pause();
+        thunder.pause();
+        applause.pause();
+        boo.pause();
+
         // Now that user guessed a letter, we add the user choice to the user array       
         userGuess = event.key.toLowerCase();
-        userChoiceArray.push(userGuess); 
-        
+
         // Checking if the user guess a letter
         let isGuessedLetter = letterChoices.find(function(check) {
             return check === userGuess;
         });
-
-        // Checking if the user already guessed the letter
-        let isUserGuessedLetter = userChoiceArray.find(function(dcheck) {
-            return dcheck === userGuess;
-        });
-            alert(isUserGuessedLetter);
-        if (isGuessedLetter && !isGuessedLetter) {
-
-            if (guessesLeft > 0) {
+        
+        if (isGuessedLetter) {
+            
+            // Checking if the user already guessed the letter
+            let isUserGuessedLetter = userChoiceArray.find(function(dcheck) {
+                return dcheck === userGuess;
+            });
     
-                // Display Guessed user Array
-                guessesText.innerHTML = userChoiceArray.toString();
+            if (!isUserGuessedLetter) {
     
-                // Compare choices by calling the function
-                compareChoices();
+                userChoiceArray.push(userGuess); 
 
+                if (guessesLeft > 0) {
+        
+                    // Display Guessed user Array
+                    guessesText.innerHTML = userChoiceArray.toString();
+        
+                    // Compare choices by calling the function
+                    compareChoices();
+    
+                } else {
+                    addlosses();
+                }
+    
             } else {
-
-                addlosses();
+                slap.play();
+                errorMessageText.style.display = "Block";
+                errorMessageText.innerHTML = "You can't Guess the same Letter Twice !"
             }
 
         } else {
-            alert("Only Letter allowed!");
+            slap.play();
+            errorMessageText.style.display = "block";
+            errorMessageText.innerHTML = "Only Letter allowed!";
         }
     };
 
@@ -81,7 +104,7 @@ function compareChoices() {
 
         wins++;
         winsText.innerHTML = wins;
-
+        applause.play();
         resetRestart();
 
     } else {
@@ -95,6 +118,7 @@ function reduceGuesses() {
 
     guessesLeft--;
     guessesLeftText.innerHTML = guessesLeft;
+    boo.play();
 }
 
 // Function add Losses
@@ -102,6 +126,7 @@ function addlosses() {
 
     losses++;
     lossesText.innerHTML = losses;
+    thunder.play();
     resetRestart();
 }
 
@@ -119,7 +144,11 @@ function resetRestart() {
 }
 
 
+function isGameOver() {
 
+    return;
+
+}
 /* MAIN PROCESS
 ============================================================= */
 

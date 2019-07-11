@@ -15,7 +15,12 @@ section h1 {
 }
 div.emptyspace {
     margin: 0;
-    padding: 11%;
+    padding: 30px;
+    height: 250px;
+}
+
+div.cardGuess {
+    height: 100px;
 }
 
 footer {

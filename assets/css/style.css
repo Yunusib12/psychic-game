@@ -10,6 +10,11 @@ section h1 {
     font-size: 5.2em;
 }
 
+section h2 {
+    font-family: 'Finger Paint', cursive;
+    font-size: 4.5em;
+}
+
 div p {
     font-size: 20px;
 }
@@ -17,7 +22,7 @@ div p {
 div.emptyspace {
     margin: 0;
     padding: 30px;
-    height: 250px;
+    height: 150px;
 }
 
 div.cardGuess {

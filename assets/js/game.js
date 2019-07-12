@@ -23,8 +23,9 @@ let lossesText = document.getElementById("losses");
 let guessesLeftText = document.getElementById("guessesLeft");
 let guessesText = document.getElementById("guessed");
 let errorMessageText = document.getElementById("errorMessage");
-
+let winMessageText = document.getElementById("winMessage");
 errorMessageText.style.display = "none";
+winMessageText.style.display = "none";
 
 /* FUNCTIONS
 ============================================================= */
@@ -36,16 +37,15 @@ function computerChoice() {
 
     computerChoiceArray.push(computerChoose);
 
-    console.log(computerChoiceArray);
-
 }
 
 // Function when it runs save the user choice into an array
 function userChoice() {
 
-    document.onkeyup = function (event) {
+    document.onkeyup = function(event) {
 
         errorMessageText.style.display = "none";
+        winMessageText.style.display = "none";
         slap.pause();
         thunder.pause();
         applause.pause();
@@ -58,30 +58,30 @@ function userChoice() {
         let isGuessedLetter = letterChoices.find(function(check) {
             return check === userGuess;
         });
-        
+
         if (isGuessedLetter) {
-            
+
             // Checking if the user already guessed the letter
             let isUserGuessedLetter = userChoiceArray.find(function(dcheck) {
                 return dcheck === userGuess;
             });
-    
+
             if (!isUserGuessedLetter) {
-    
-                userChoiceArray.push(userGuess); 
+
+                userChoiceArray.push(userGuess);
 
                 if (guessesLeft > 0) {
-        
+
                     // Display Guessed user Array
                     guessesText.innerHTML = userChoiceArray.toString();
-        
+
                     // Compare choices by calling the function
                     compareChoices();
-    
+
                 } else {
                     addlosses();
                 }
-    
+
             } else {
                 slap.play();
                 errorMessageText.style.display = "Block";
@@ -104,6 +104,8 @@ function compareChoices() {
 
         wins++;
         winsText.innerHTML = wins;
+        winMessageText.style.display = "block";
+        winMessageText.innerHTML = "Yeaaaaaah '" + computerChoose.toUpperCase() + "' was the letter";
         applause.play();
         resetRestart();
 
@@ -154,5 +156,3 @@ function isGameOver() {
 
 userChoice();
 computerChoice();
-
-

@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,12 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>The Psychic Game</title>
 </head>
+
 <body>
     <main class="container">
         <section class="row">
             <div class="col-md-12 text-center">
-                <h1 class="text-white">The Psychic Game</h1>
+                <h1 class="text-white wobble">The Psychic Game</h1>
                 <br>
                 <br>
                 <p class="font-weight-bolder text-white">Guess what letter am thinking of from a to z</p>
@@ -22,42 +24,59 @@
         <section class="row">
             <div class="col-md-12">
                 <div class="emptyspace">
-                    <div id="errorMessage" class="alert alert-danger text-center font-weight-bolder" role="alert"></div>
+                    <div id="errorMessage" class="alert alert-danger text-center font-weight-bolder bounceIn" role="alert"></div>
                 </div>
             </div>
         </section>
         <section class="row justify-content-md-center">
-            <section class="col-md-3">
+            <section class="col-md-3 bounceIn">
                 <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                    <div class="card-header text-center"><h3>Wins</h3></div>
+                    <div class="card-header text-center">
+                        <h3>Wins</h3>
+                    </div>
                     <div class="card-body">
                         <h5 id="wins" class="card-title text-center font-weight-bolder">0</h5>
                     </div>
                 </div>
             </section>
-            <section class="col-md-3">
+            <section class="col-md-3 bounceIn">
                 <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                    <div class="card-header text-center"><h3>Losses</h3></div>
+                    <div class="card-header text-center">
+                        <h3>Losses</h3>
+                    </div>
                     <div class="card-body">
                         <h5 id="losses" class="card-title text-center font-weight-bolder">0</h5>
                     </div>
                 </div>
             </section>
-            <section class="col-md-3">
+            <section class="col-md-3 bounceIn">
                 <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                    <div class="card-header text-center"><h3>Guesses Left</h3></div>
+                    <div class="card-header text-center">
+                        <h3>Guesses Left</h3>
+                    </div>
                     <div class="card-body">
                         <h5 id="guessesLeft" class="card-title text-center font-weight-bolder">9</h5>
                     </div>
                 </div>
-            </section>                           
+            </section>
         </section>
         <section class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 slideInRight">
                 <div class="card text-center cardGuess">
                     <div class="card-body">
                         <h5 class="card-title">Your Guess so far</h5>
                         <p id="guessed" class="card-text font-weight-bolder text-primary"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="row">
+            <div class="col-md-12 slideInRight">
+                <div>
+                    <div>
+                        <br>
+                        <br>
+                        <h1 id="winMessage" class="text-primary text-center wobble"></h1>
                     </div>
                 </div>
             </div>
@@ -70,4 +89,5 @@
     <!-- Calling my JavaScript -->
     <script src="./assets/js/game.js"></script>
 </body>
+
 </html>

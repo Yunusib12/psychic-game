@@ -9,6 +9,8 @@ let userGuess;
 let computerChoose;
 let computerChoiceArray = [];
 let userChoiceArray = [];
+let win = false;
+let lost = false;
 let slap = new Audio("./assets/sounds/slap.mp3");
 let thunder = new Audio("./assets/sounds/thunder.mp3");
 let applause = new Audio("./assets/sounds/applause.mp3");
@@ -23,9 +25,9 @@ let lossesText = document.getElementById("losses");
 let guessesLeftText = document.getElementById("guessesLeft");
 let guessesText = document.getElementById("guessed");
 let errorMessageText = document.getElementById("errorMessage");
-let winMessageText = document.getElementById("winMessage");
+let winLostMessageText = document.getElementById("winLostMessage");
 errorMessageText.style.display = "none";
-winMessageText.style.display = "none";
+winLostMessageText.style.display = "none";
 
 /* FUNCTIONS
 ============================================================= */
@@ -45,7 +47,7 @@ function userChoice() {
     document.onkeyup = function(event) {
 
         errorMessageText.style.display = "none";
-        winMessageText.style.display = "none";
+        winLostMessageText.style.display = "none";
         slap.pause();
         thunder.pause();
         applause.pause();
@@ -104,8 +106,8 @@ function compareChoices() {
 
         wins++;
         winsText.innerHTML = wins;
-        winMessageText.style.display = "block";
-        winMessageText.innerHTML = "Yeaaaaaah '" + computerChoose.toUpperCase() + "' was the letter";
+        winLostMessageText.style.display = "block";
+        winLostMessageText.innerHTML = "Yeaaaaaah '" + computerChoose.toUpperCase() + "' was the letter";
         applause.play();
         resetRestart();
 
@@ -128,6 +130,8 @@ function addlosses() {
 
     losses++;
     lossesText.innerHTML = losses;
+    winLostMessageText.style.display = "block";
+    winLostMessageText.innerHTML = "Aaaggghh! '" + computerChoose.toUpperCase() + "' was the letter";
     thunder.play();
     resetRestart();
 }

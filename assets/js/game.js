@@ -41,6 +41,25 @@ function computerChoice() {
 
 }
 
+// Function that reset All and Restart the game
+function resetRestart() {
+
+    guessesLeft = 9;
+    userChoiceArray = [];
+    computerChoiceArray = [];
+    guessesText.innerHTML = "";
+    guessesLeftText.innerHTML = guessesLeft;
+
+    computerChoice();
+}
+
+// Function reduceGuesses 
+function reduceGuesses() {
+
+    guessesLeft--;
+    guessesLeftText.innerHTML = guessesLeft;
+    boo.play();
+}
 
 // Function that compare User Guess and Computer Choice
 function compareChoices() {
@@ -60,13 +79,6 @@ function compareChoices() {
     }
 }
 
-// Function reduceGuesses 
-function reduceGuesses() {
-
-    guessesLeft--;
-    guessesLeftText.innerHTML = guessesLeft;
-    boo.play();
-}
 
 // Function add Losses
 function addlosses() {
@@ -77,19 +89,6 @@ function addlosses() {
     winLostMessageText.innerHTML = "Aaaggghh! '" + computerChoose.toUpperCase() + "' was the letter";
     thunder.play();
     resetRestart();
-}
-
-
-// Function that reset All and Restart the game
-function resetRestart() {
-
-    guessesLeft = 9;
-    userChoiceArray = [];
-    computerChoiceArray = [];
-    guessesText.innerHTML = "";
-    guessesLeftText.innerHTML = guessesLeft;
-
-    computerChoice();
 }
 
 // Function when it runs save the user choice into an array

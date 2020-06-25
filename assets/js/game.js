@@ -41,63 +41,6 @@ function computerChoice() {
 
 }
 
-// Function when it runs save the user choice into an array
-function userChoice() {
-
-    document.onkeyup = function(event) {
-
-        errorMessageText.style.display = "none";
-        winLostMessageText.style.display = "none";
-        slap.pause();
-        thunder.pause();
-        applause.pause();
-        boo.pause();
-
-        // Now that user guessed a letter, we add the user choice to the user array       
-        userGuess = event.key.toLowerCase();
-
-        // Checking if the user guess a letter
-        let isGuessedLetter = letterChoices.find(function(check) {
-            return check === userGuess;
-        });
-
-        if (isGuessedLetter) {
-
-            // Checking if the user already guessed the letter
-            let isUserGuessedLetter = userChoiceArray.find(function(dcheck) {
-                return dcheck === userGuess;
-            });
-
-            if (!isUserGuessedLetter) {
-
-                userChoiceArray.push(userGuess);
-
-                if (guessesLeft > 0) {
-
-                    // Display Guessed user Array
-                    guessesText.innerHTML = userChoiceArray.toString();
-
-                    // Compare choices by calling the function
-                    compareChoices();
-
-                } else {
-                    addlosses();
-                }
-
-            } else {
-                slap.play();
-                errorMessageText.style.display = "Block";
-                errorMessageText.innerHTML = "You can't Guess the same Letter Twice !"
-            }
-
-        } else {
-            slap.play();
-            errorMessageText.style.display = "block";
-            errorMessageText.innerHTML = "Only Letter allowed!";
-        }
-    };
-
-}
 
 // Function that compare User Guess and Computer Choice
 function compareChoices() {
@@ -149,12 +92,65 @@ function resetRestart() {
     computerChoice();
 }
 
+// Function when it runs save the user choice into an array
+function userChoice() {
 
-function isGameOver() {
+    document.onkeyup = function (event) {
 
-    return;
+        errorMessageText.style.display = "none";
+        winLostMessageText.style.display = "none";
+        slap.pause();
+        thunder.pause();
+        applause.pause();
+        boo.pause();
+
+        // Now that user guessed a letter, we add the user choice to the user array       
+        userGuess = event.key.toLowerCase();
+
+        // Checking if the user guess a letter
+        let isGuessedLetter = letterChoices.find(function (check) {
+            return check === userGuess;
+        });
+
+        if (isGuessedLetter) {
+
+            // Checking if the user already guessed the letter
+            let isUserGuessedLetter = userChoiceArray.find(function (dcheck) {
+                return dcheck === userGuess;
+            });
+
+            if (!isUserGuessedLetter) {
+
+                userChoiceArray.push(userGuess);
+
+                if (guessesLeft > 0) {
+
+                    // Display Guessed user Array
+                    guessesText.innerHTML = userChoiceArray.toString();
+
+                    // Compare choices by calling the function
+                    compareChoices();
+
+                } else {
+                    addlosses();
+                }
+
+            } else {
+                slap.play();
+                errorMessageText.style.display = "Block";
+                errorMessageText.innerHTML = "You can't Guess the same Letter Twice !"
+            }
+
+        } else {
+            slap.play();
+            errorMessageText.style.display = "block";
+            errorMessageText.innerHTML = "Only Letter allowed!";
+        }
+    };
 
 }
+
+
 /* MAIN PROCESS
 ============================================================= */
 
